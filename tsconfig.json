@@ -1,0 +1,31 @@
+{
+  "compilerOptions": {
+    "module": "preserve",
+    "target": "es2022",
+    "types": ["node"],
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "isolatedModules": true,
+    "noUnusedParameters": true,
+    "lib": ["ES2022", "DOM", "DOM.Iterable"],
+    "strict": true,
+    "resolveJsonModule": true,
+    "incremental": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@src/*": ["./src/*"],
+      "@controllers/*": ["./src/api/controllers/*"],
+      "@stepsApi/*": ["./src/api/steps/*"],
+      "@components/*": ["./src/ui/components/*"],
+      "@generated/*": ["./generated/*"],
+      "@fixtures/*": ["./src/fixtures/*"],
+      "@pages/*": ["./src/ui/pages/*"],
+      "@stepsUI/*": ["./src/ui/steps/*"],
+      "@testData/*": ["./testData/*"],
+      "@utils/*": ["./common/utils/*"],
+      "@models/*": ["./src/types/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
+  "exclude": ["node_modules", "dist", "test-results", "playwright-report"]
+}
