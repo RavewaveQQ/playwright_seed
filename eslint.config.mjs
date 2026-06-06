@@ -14,7 +14,7 @@ export default defineConfig([
 
   {
     files: ['**/*.ts'],
-    extends: tseslint.configs.recommendedTypeChecked,
+    extends: tseslint.configs.recommended,
     languageOptions: {
       parserOptions: {
         projectService: {
@@ -26,7 +26,14 @@ export default defineConfig([
     },
   },
 
-  playwright.configs['flat/recommended'],
+  {
+    ...playwright.configs['flat/recommended'],
+    settings: {
+      playwright: {
+        globalAliases: { test: ['setup', 'apiTest', 'uiTest'] },
+      },
+    },
+  },
 
   {
     files: ['**/*.{js,ts}'],

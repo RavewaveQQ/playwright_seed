@@ -17,13 +17,6 @@ export type ProfileData = Partial<{
 export class AccountPage extends BasePage {
   readonly navBar = new NavBarComponent(this.page);
 
-  // Account section tab navigation
-  readonly favoritesTab = this.page.getByRole('link', { name: 'Favorites' });
-  readonly profileTab = this.page.getByRole('link', { name: 'Profile' });
-  readonly invoicesTab = this.page.getByRole('link', { name: 'Invoices' });
-  readonly messagesTab = this.page.getByRole('link', { name: 'Messages' });
-
-  // Profile form
   readonly firstNameInput = this.page.getByRole('textbox', { name: 'First name' });
   readonly lastNameInput = this.page.getByRole('textbox', { name: 'Last name' });
   readonly emailInput = this.page.getByRole('textbox', { name: 'Email address' });
@@ -35,7 +28,6 @@ export class AccountPage extends BasePage {
   readonly countryInput = this.page.getByRole('textbox', { name: 'Country' });
   readonly updateProfileButton = this.page.getByRole('button', { name: 'Update Profile' });
 
-  // Change password section (labels are not properly associated — use data-test)
   readonly currentPasswordInput = this.page.locator('[data-test="current-password"]');
   readonly newPasswordInput = this.page.locator('[data-test="new-password"]');
   readonly confirmPasswordInput = this.page.locator('[data-test="new-password-confirm"]');

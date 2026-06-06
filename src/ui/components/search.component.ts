@@ -9,7 +9,7 @@ export class SearchComponent extends BaseComponent {
   readonly ecoFriendlyCheckbox = this.root.getByRole('checkbox', { name: 'Show only eco-friendly products' });
 
   constructor(page: Page) {
-    super(page, page.locator('[data-test="filters"]'));
+    super(page, page.locator('div[data-test="filters"]'));
   }
 
   categoryCheckbox(name: string): Locator {

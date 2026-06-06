@@ -7,7 +7,6 @@ export class HomePage extends BasePage {
   readonly navBar = new NavBarComponent(this.page);
   readonly search = new SearchComponent(this.page);
 
-  // Pagination sits in the second navigation landmark on the page
   private readonly paginationNav = this.page.getByRole('navigation').last();
 
   async open(): Promise<void> {

@@ -10,8 +10,7 @@
     "lib": ["ES2022", "DOM", "DOM.Iterable"],
     "strict": true,
     "resolveJsonModule": true,
-    "incremental": true,
-    "skipLibCheck": true,
+"skipLibCheck": true,
     "paths": {
       "@src/*": ["./src/*"],
       "@controllers/*": ["./src/api/controllers/*"],

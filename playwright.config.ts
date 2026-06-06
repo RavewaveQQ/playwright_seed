@@ -3,7 +3,7 @@ import path from 'path';
 import dotenv from 'dotenv';
 
 if (!process.env.CI) {
-  dotenv.config({ path: path.resolve('./src/common/config/envs/.env') });
+  dotenv.config({ path: path.resolve('./src/common/config/envs/.env'), quiet: true });
 }
 
 export default defineConfig({
@@ -13,7 +13,7 @@ export default defineConfig({
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.RETRY ? Number(process.env.RETRY) : 3,
-  workers: process.env.CI ? 1 : 3,
+  workers: process.env.CI ? 3 : 3,
   reporter: [
     ['list'],
     ['junit', { outputFile: 'playwright-report/doc/report.xml' }],
@@ -34,6 +34,7 @@ export default defineConfig({
       name: 'api',
       testDir: './tests/api',
       dependencies: ['setup'],
+      use: { storageState: 'storage/user.json' },
       grep: process.env.TAGS ? new RegExp(process.env.TAGS) : undefined,
       grepInvert: process.env.EXCLUDE_TAGS ? new RegExp(process.env.EXCLUDE_TAGS) : undefined,
     },

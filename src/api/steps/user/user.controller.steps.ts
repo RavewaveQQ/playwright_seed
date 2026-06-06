@@ -5,4 +5,9 @@ export class UserControllerSteps extends UserController {
     const response = await this.login({ email, password });
     return this.expectResponseSuccess(response);
   }
+
+  public async getMeFlow() {
+    const response = await this.getMe();
+    return this.expectResponseSuccess(response);
+  }
 }

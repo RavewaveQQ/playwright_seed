@@ -13,7 +13,7 @@ export interface RequestLog {
 export class ApiLogger {
   static logRequest(req: RequestLog): void {
     if (!LOG_ENABLED) return;
-    const bodyStr = req.body ? ` body=${truncate(JSON.stringify(req.body))}` : '';
+    const bodyStr = req.body ? ` body=${truncate(JSON.stringify(maskSensitive(req.body)))}` : '';
     console.info(`→ ${req.method} ${req.url}${bodyStr}`);
   }
 
@@ -22,6 +22,18 @@ export class ApiLogger {
     const slowMark = response.latencyMs > LATENCY_WARN_MS ? ' SLOW' : '';
     console.info(`← ${method} ${response.url} [${response.status}] ${response.latencyMs}ms${slowMark}`);
   }
+}
+
+const SENSITIVE_KEYS = new Set(['password', 'token', 'secret', 'authorization']);
+
+function maskSensitive(body: unknown): unknown {
+  if (typeof body !== 'object' || body === null) return body;
+  return Object.fromEntries(
+    Object.entries(body as Record<string, unknown>).map(([k, v]) => [
+      k,
+      SENSITIVE_KEYS.has(k.toLowerCase()) ? '***' : v,
+    ]),
+  );
 }
 
 function truncate(value: string, max = 500): string {

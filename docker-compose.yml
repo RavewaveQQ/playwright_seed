@@ -1,0 +1,9 @@
+name: auto-practice
+services:
+  tests:
+    build: .
+    env_file:
+      - src/common/config/envs/.env
+    volumes:
+      - ./playwright-report:/app/playwright-report
+      - ./test-results:/app/test-results
