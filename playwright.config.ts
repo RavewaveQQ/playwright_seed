@@ -21,6 +21,9 @@ export default defineConfig({
     ['html', { outputFolder: 'playwright-report/html' }],
   ],
   use: {
+    launchOptions: {
+      args: ['--no-sandbox', '--disable-dev-shm-usage'],
+    },
     actionTimeout: 15_000,
     navigationTimeout: 60_000,
     ignoreHTTPSErrors: true,
