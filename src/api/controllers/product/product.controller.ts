@@ -7,7 +7,10 @@ export class ProductController extends BaseController {
   private readonly BASE = '/products';
 
   async getAll(params?: ProductGetParams): Promise<ApiParsedResponse<PaginatedProductResponse>> {
-    return this.apiManager.get(this.BASE, params ? { params: params as Record<string, string | number | boolean> } : undefined);
+    return this.apiManager.get(
+      this.BASE,
+      params ? { params: params as Record<string, string | number | boolean> } : undefined,
+    );
   }
 
   async create(data: ProductRequest): Promise<ApiParsedResponse<ProductResponse>> {

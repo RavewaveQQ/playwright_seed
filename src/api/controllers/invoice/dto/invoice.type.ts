@@ -2,12 +2,7 @@ import type { ProductResponse } from '@controllers/product/dto/product.type';
 import type { PaymentDetails, PaymentMethod } from '@controllers/payment/dto/payment.type';
 import type { Paginated } from '@src/types/common/api-response.type';
 
-export type InvoiceStatus =
-  | 'AWAITING_FULFILLMENT'
-  | 'ON_HOLD'
-  | 'AWAITING_SHIPMENT'
-  | 'SHIPPED'
-  | 'COMPLETED';
+export type InvoiceStatus = 'AWAITING_FULFILLMENT' | 'ON_HOLD' | 'AWAITING_SHIPMENT' | 'SHIPPED' | 'COMPLETED';
 
 export interface InvoiceRequest {
   billing_street: string;

@@ -1,9 +1,4 @@
-export type PaymentMethod =
-  | 'bank-transfer'
-  | 'cash-on-delivery'
-  | 'credit-card'
-  | 'buy-now-pay-later'
-  | 'gift-card';
+export type PaymentMethod = 'bank-transfer' | 'cash-on-delivery' | 'credit-card' | 'buy-now-pay-later' | 'gift-card';
 
 export interface BankTransferDetails {
   bank_name: string;
