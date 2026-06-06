@@ -22,6 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: mcr.microsoft.com/playwright:v1.60.0-noble
+      options: --shm-size=2gb
     env:
       ENV: ${{ github.event.inputs.env || vars.ENV }}
       PASSWORD: ${{ secrets.PASSWORD }}
