@@ -55,9 +55,10 @@ jobs:
       ENV: ${{ github.event.inputs.env || vars.ENV }}
       PASSWORD: ${{ secrets.PASSWORD }}
       ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: 'true'
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v5
       - name: Cache node_modules
         uses: actions/cache@v5
         with:
