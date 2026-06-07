@@ -24,10 +24,10 @@ Tests run against the remote dev environment by default (`ENV=dev`).
 
 ## Environments
 
-| ENV | URL |
-|-----|-----|
-| `dev` | https://practicesoftwaretesting.com |
-| `local` | http://localhost:4200 |
+| ENV     | URL                                 |
+| ------- | ----------------------------------- |
+| `dev`   | https://practicesoftwaretesting.com |
+| `local` | http://localhost:4200               |
 
 Switch with `ENV=<name>` prefix or set in `src/common/config/envs/.env`.
 
@@ -50,12 +50,12 @@ docker exec -u www-data pst-local-laravel-api-1 php artisan migrate:fresh --seed
 
 Services started:
 
-| Service | URL |
-|---------|-----|
-| Frontend (Angular) | http://localhost:4200 |
-| API (Laravel) | http://localhost:8091 |
-| API docs (Swagger) | http://localhost:8091/api/documentation |
-| Database admin (PHPMyAdmin) | http://localhost:8000 |
+| Service                     | URL                                     |
+| --------------------------- | --------------------------------------- |
+| Frontend (Angular)          | http://localhost:4200                   |
+| API (Laravel)               | http://localhost:8091                   |
+| API docs (Swagger)          | http://localhost:8091/api/documentation |
+| Database admin (PHPMyAdmin) | http://localhost:8000                   |
 
 Run tests against local services:
 
@@ -95,6 +95,7 @@ docker run --rm \
 GitHub Actions pipeline runs on every push to `main` and on pull requests.
 
 Jobs:
+
 - **Code Quality** (PR only) — ESLint, Prettier, TypeScript check
 - **test** — setup + API tests in Playwright Docker container
 - **Test Report** — publishes JUnit results to GitHub Checks
