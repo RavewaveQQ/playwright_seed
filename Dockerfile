@@ -1,4 +1,5 @@
-FROM mcr.microsoft.com/playwright:v1.60.0-noble
+ARG PLAYWRIGHT_VERSION=v1.60.0-noble
+FROM mcr.microsoft.com/playwright:${PLAYWRIGHT_VERSION}
 
 WORKDIR /app
 
