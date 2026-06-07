@@ -1,8 +1,9 @@
 import { dev } from './dev.env';
 import { stage } from './stage.env';
 import { prod } from './prod.env';
+import { local } from './local.env';
 
-const envMap = { dev, stage, prod };
+const envMap = { local, dev, stage, prod };
 
 const name = (process.env.ENV ?? 'dev') as keyof typeof envMap;
 if (!(name in envMap)) throw new Error(`Unknown ENV: ${name}`);
