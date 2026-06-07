@@ -7,19 +7,13 @@ type StorageState = {
   origins: Array<{ origin: string; localStorage: Array<{ name: string; value: string }> }>;
 };
 
-export function readAuthToken(path: string): string {
-  let state: StorageState;
+export function readAuthToken(path: string): string | undefined {
   try {
-    state = JSON.parse(readFileSync(path, 'utf-8')) as StorageState;
+    const state = JSON.parse(readFileSync(path, 'utf-8')) as StorageState;
+    return state.origins?.[0]?.localStorage?.find((item) => item.name === AUTH_TOKEN_KEY)?.value;
   } catch {
-    throw new Error(`Storage state not found at "${path}". Did the setup project run before this test?`);
+    return undefined;
   }
-
-  const token = state.origins?.[0]?.localStorage?.find((item) => item.name === AUTH_TOKEN_KEY)?.value;
-  if (!token) {
-    throw new Error(`No "${AUTH_TOKEN_KEY}" found in storage state "${path}".`);
-  }
-  return token;
 }
 
 export function buildStorageState(origin: string, token: string): StorageState {
