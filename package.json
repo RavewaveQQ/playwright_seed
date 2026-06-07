@@ -10,7 +10,8 @@
     "format:all": "npm run format:fix && npm run lint:fix",
     "report": "npx playwright show-report playwright-report/html",
     "test:docker": "docker run --rm --env-file src/common/config/envs/.env -v $(pwd)/playwright-report:/app/playwright-report -v $(pwd)/test-results:/app/test-results auto-practice",
-    "test:compose": "docker compose up && docker compose down"
+    "test:compose": "docker compose up && docker compose down",
+    "typecheck": "tsc --noEmit"
   },
   "author": "",
   "license": "ISC",
