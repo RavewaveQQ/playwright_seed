@@ -14,17 +14,9 @@
     "paths": {
       "@src/*": ["./src/*"],
       "@controllers/*": ["./src/api/controllers/*"],
-      "@stepsApi/*": ["./src/api/steps/*"],
-      "@components/*": ["./src/ui/components/*"],
-      "@generated/*": ["./generated/*"],
-      "@fixtures/*": ["./src/fixtures/*"],
-      "@pages/*": ["./src/ui/pages/*"],
-      "@stepsUI/*": ["./src/ui/steps/*"],
-      "@testData/*": ["./testData/*"],
-      "@utils/*": ["./common/utils/*"],
-      "@models/*": ["./src/types/*"]
+      "@testData/*": ["./testData/*"]
     }
   },
-  "include": ["src/**/*.ts", "tests/**/*.ts", "playwright.config.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts", "testData/**/*.ts", "playwright.config.ts"],
   "exclude": ["node_modules", "dist", "test-results", "playwright-report"]
 }
