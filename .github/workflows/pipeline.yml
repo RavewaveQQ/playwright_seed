@@ -23,6 +23,9 @@ concurrency:
   group: ${{github.workflow}}-${{github.ref}}-${{github.event_name}}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
+permissions:
+  contents: read
+
 jobs:
   lint:
     name: Code Quality
@@ -38,6 +41,9 @@ jobs:
       - run: npm run lint:check
       - run: npm run format:check
       - run: npm run typecheck
+      - name: Audit dependencies
+        run: npm audit --audit-level=high
+        continue-on-error: true
 
   test:
     runs-on: ubuntu-latest
@@ -53,13 +59,13 @@ jobs:
       ADMIN_PASSWORD: ${{ secrets.ADMIN_PASSWORD }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v5
-      - name: Cache node_modules
+        uses: actions/checkout@v6
+      - name: Cache npm
         uses: actions/cache@v5
         with:
-          path: node_modules
-          key: ${{runner.os}}-node-${{hashFiles('package-lock.json')}}
-          restore-keys: ${{runner.os}}-node-
+          path: ~/.npm
+          key: ${{runner.os}}-npm-${{hashFiles('package-lock.json')}}
+          restore-keys: ${{runner.os}}-npm-
       - name: Install dependencies
         run: npm ci
       - name: Run tests
@@ -70,6 +76,13 @@ jobs:
         with:
           name: playwright-report
           path: playwright-report/
+          retention-days: 7
+      - name: Upload traces
+        uses: actions/upload-artifact@v7
+        if: failure()
+        with:
+          name: test-results
+          path: test-results/
           retention-days: 7
 
   report:

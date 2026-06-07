@@ -12,8 +12,8 @@ export default defineConfig({
   timeout: 2 * 60_000,
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
-  retries: process.env.RETRY ? Number(process.env.RETRY) : 3,
-  workers: process.env.CI ? 3 : 3,
+  retries: process.env.RETRY ? Number(process.env.RETRY) : process.env.CI ? 2 : 0,
+  workers: 3,
   reporter: [
     ['list'],
     ['junit', { outputFile: 'playwright-report/doc/report.xml' }],

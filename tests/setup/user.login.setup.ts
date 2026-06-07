@@ -1,6 +1,7 @@
 import { apiTest as setup } from '@src/fixture/api.fixture';
 import { expect } from '@playwright/test';
 import { env } from '@src/common/config/envs/env';
+import { buildStorageState } from '@src/fixture/storage';
 import { writeFileSync, mkdirSync } from 'fs';
 import path from 'path';
 
@@ -15,12 +16,6 @@ for (const { role, email, password, storagePath } of LOGINS) {
     expect(token.access_token, 'Login succeeded but access_token is missing').toBeTruthy();
 
     mkdirSync(path.dirname(storagePath), { recursive: true });
-    writeFileSync(
-      storagePath,
-      JSON.stringify({
-        cookies: [],
-        origins: [{ origin: env.webURL.origin, localStorage: [{ name: 'auth-token', value: token.access_token }] }],
-      }),
-    );
+    writeFileSync(storagePath, JSON.stringify(buildStorageState(env.webURL.origin, token.access_token)));
   });
 }

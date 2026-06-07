@@ -6,7 +6,6 @@ node_modules/
 /playwright/.cache/
 /playwright/.auth/
 .playwright-mcp
-.generated/
 .vscode/
 .claude/
 .env

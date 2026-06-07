@@ -9,22 +9,8 @@ export abstract class BaseController {
     this.apiManager = new APIManager(request);
   }
 
-  protected expectResponseSuccess<T>(response: ApiParsedResponse<T>): T {
-    this.verifyStatus(response, 200);
-    return response.body;
-  }
-
-  protected getSuccessResponseBody<T>(response: ApiParsedResponse<T>): T {
-    this.verifyStatus(response, 200);
-    return response.body;
-  }
-
-  protected verifyStatusAndGetResponseBody<T>(response: ApiParsedResponse<T>, status = 400): T {
-    this.verifyStatus(response, status);
-    return response.body;
-  }
-
-  protected verifyStatus<T>(response: ApiParsedResponse<T>, status: number): void {
+  protected expectStatus<T>(response: ApiParsedResponse<T>, status = 200): T {
     expect(response.status, `URL: ${response.url}\nBody: ${JSON.stringify(response.body)}`).toBe(status);
+    return response.body;
   }
 }
